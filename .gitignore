@@ -1,0 +1,37 @@
+# Deploy
+deploy/
+
+# Build
+build/
+
+# Github Pages
+ghp/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+
+# Bower
+bower_components/
+
+# Npm
+node_modules/
+
+# Eclipse
+.metadata
+.classpath
+.project
+.settings/
+
+# Maven
+log/
+target/
+
+# SVN
+*.svn/
+
+# Temp
+src/template
