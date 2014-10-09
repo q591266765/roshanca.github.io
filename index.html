@@ -1,86 +1,176 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<title>khApp</title>
-	<script>
-		var appParams = {};
-		appParams.version = "demo version";
-		appParams.openType = ["1", "3"];
-	</script>
-	<!-- build:css -->
-	<link rel="stylesheet" href="css/app.css">
-	<!-- endbuild -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>wtApp</title>
+    <!-- build:css -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- endbuild -->
 </head>
 <body class="theme-orange">
-	<div class="statusbar-overlay"></div>
-	<div class="panel-overlay"></div>
-	<div class="panel panel-right panel-reveal">
-		<div class="title-block">设置</div>
-		<div class="content-block">
-			<ul class="panel-list">
-				<li>
-					<a href="faq.html" class="item-link close-panel">
-						<div class="item-inner">
-							<div class="item-title">帮助中心</div>
-							<div class="item-media"><i class="iconfont icon-qmark"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="item-link contact">
-						<div class="item-inner">
-							<div class="item-title">联系方式</div>
-							<div class="item-media"><i class="iconfont icon-tel"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="item-link version">
-						<div class="item-inner">
-							<div class="item-title">版本说明</div>
-							<div class="item-media"><i class="iconfont icon-emark"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="bank.html" class="item-link close-panel">
-						<div class="item-inner">
-							<div class="item-title">支持银行</div>
-							<div class="item-media"><i class="iconfont icon-bankcard"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="#" class="item-link cache">
-						<div class="item-inner">
-							<div class="item-title">清除缓存</div>
-							<div class="item-media"><i class="iconfont icon-del"></i></div>
-						</div>
-					</a>
-				</li>
-			</ul>
-			<a href="#" class="button button-big fixed-bottom logout">注销</a>
-		</div>
-	</div>
-	<div class="views">
-		<div class="view view-main hidden-navbar" id="mainView">
-			<div class="navbar">
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="views tabs">
+        <!-- 我的业务 -->
+        <div class="view tab active view-main" id="mainView">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">掌上营业厅</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="index" class="page">
+                    <div class="page-content">
+                        <!-- Slider -->
+                        <div class="slider-container">
+                            <div class="slider-wrapper">
+                                <div class="slider-slide">①</div>
+                                <div class="slider-slide">②</div>
+                                <div class="slider-slide">③</div>
+                            </div>
+                            <div class="slider-pagination"></div>
+                        </div>
+                        <!-- 业务模板 -->
+                        <script id="businessTemplate" type="text/template">
+                            <ul>
+                                {{#each businessList}}
+                                <li class="business-{{name}}">
+                                    <a href="{{../templatePath}}/{{fullName}}/index.html">
+                                        <div class="business-icon"></div>
+                                        <div class="business-label">{{label}}</div>
+                                    </a>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </script>
+                        <!-- 业务容器 -->
+                        <div class="business">
+                            <div class="fix-center">
+                                <span class="preloader"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 我的资金 -->
+        <div class="view tab" id="moneyView">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">我的资金</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="money" class="page">
 
-			</div>
-			<div class="pages navbar-through no-toolbar">
-				<div data-page="index" class="page no-navbar">
+                </div>
+            </div>
+        </div>
+        <!-- 证书管理 -->
+        <div class="view tab" id="certView">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">证书管理</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="cert" class="page">
 
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="popup"></div>
-	<!-- build:js -->
-	<script data-main="js/app" src="js/libs/require.js"></script>
-	<!-- endbuild -->
+                </div>
+            </div>
+        </div>
+        <!-- 更多 -->
+        <div class="view tab" id="moreView">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding">更多</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="more" class="page">
+
+                </div>
+            </div>
+        </div>
+        <!-- toolbar start -->
+        <div class="toolbar tabbar tabbar-labels">
+            <div class="toolbar-inner">
+                <!-- 我的业务 -->
+                <a href="#mainView" class="tab-link active">
+                    <i class="iconfont icon-toolbox"></i>
+                    <span class="tabbar-label">我的业务</span>
+                </a>
+                <!-- 我的资金 -->
+                <a href="#moneyView" class="tab-link">
+                    <i class="iconfont icon-wallet"></i>
+                    <span class="tabbar-label">我的资金</span>
+                </a>
+                <!-- 证书管理 -->
+                <a href="#certView" class="tab-link">
+                    <i class="iconfont icon-book">
+                        <!-- <span class="badge badge-red">4</span> -->
+                    </i>
+                    <span class="tabbar-label">证书管理</span>
+                </a>
+                <!-- 更多 -->
+                <a href="#moreView" class="tab-link">
+                    <i class="iconfont icon-ellipsis"></i>
+                    <span class="tabbar-label">更多</span>
+                </a>
+            </div>
+        </div>
+        <!-- toolbar end -->
+    </div>
+    <div class="login-screen">
+        <!-- Default view-page layout -->
+        <div class="view">
+            <div class="page">
+              <!-- page-content has additional login-screen content -->
+                <div class="page-content login-screen-content">
+                    <div class="login-screen-title">登录</div>
+                    <!-- Login form -->
+                    <form>
+                      <div class="list-block">
+                        <ul>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">Username</div>
+                              <div class="item-input">
+                                <input type="text" name="username" placeholder="请输入资金账号">
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item-content">
+                            <div class="item-inner">
+                              <div class="item-title label">Password</div>
+                              <div class="item-input">
+                                <input type="password" name="password" placeholder="请输入交易密码">
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="content-block">
+                        <a href="#" class="button button-big active">登录</a>
+                      </div>
+                      <div class="content-block">
+                          <a href="#" class="close-login-screen">取消登录</a>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- build:js -->
+    <script data-main="js/app" src="js/libs/require.js"></script>
+    <!-- endbuild -->
+    <script>
+    require(['router'], function (Router) {
+        Router.load('index');
+    });
+    </script>
 </body>
 </html>
